@@ -13,9 +13,15 @@
 
     echo "<table class='styled-table'>";
     echo "<thead><tr>";
-    foreach ($campos as $c => $v) {
-        echo "<th>" . ucfirst($c) . "</th>";
-    }
+    echo "<th class='table-header'>idLibro</th>";
+    echo "<th class='table-header'>Título</th>";
+    echo "<th class='table-header'>Género</th>";
+    echo "<th class='table-header'>NºPáginas</th>";
+    echo "<th class='table-header'>Año</th>";
+    echo "<th class='table-header'>País</th>";
+    echo "<th class='table-header'>Autores</th>";
+    echo "<th class='table-header'>Ejemplares</th>";
+    echo "<th class='table-header'>Disponibles</th>";
     echo "<th colspan='3'>Acciones</th>";
     echo "</tr></thead>";
 

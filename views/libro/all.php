@@ -22,9 +22,17 @@ $campos = get_object_vars($libros[0]); // Obtener nombres de propiedades de los 
 // Mostrar encabezado de la tabla
 echo "<table class='books-table'>";
 echo "<thead><tr>";
-foreach ($campos as $c => $v) {
-    echo "<th class='table-header'>$c</th>";
-}
+
+    echo "<th class='table-header'>idLibro</th>";
+    echo "<th class='table-header'>Título</th>";
+    echo "<th class='table-header'>Género</th>";
+    echo "<th class='table-header'>NºPáginas</th>";
+    echo "<th class='table-header'>Año</th>";
+    echo "<th class='table-header'>País</th>";
+    echo "<th class='table-header'>Autores</th>";
+    echo "<th class='table-header'>Ejemplares</th>";
+    echo "<th class='table-header'>Disponibles</th>";
+
 
 if (isset($_SESSION['adm'])) {
     echo "<th class='table-header' colspan='3'>Acciones</th>";

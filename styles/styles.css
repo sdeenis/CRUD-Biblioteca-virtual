@@ -169,7 +169,6 @@ body {
 
 .reserve-link,
 .edit-link,
-.delete-link,
 .add-book-link {
   text-decoration: none;
   color: #007bff;
@@ -178,7 +177,6 @@ body {
 
 .reserve-link:hover,
 .edit-link:hover,
-.delete-link:hover,
 .add-book-link:hover {
   color: #0056b3;
 }
@@ -618,12 +616,14 @@ body {
 }
 
 .delete-link {
+  text-decoration: none;
+  font-weight: bold;
   color: red;
 }
 
 .delete-link:hover {
-  background-color: red;
-  color: white;
+  color: rgb(139, 1, 1) !important;
+
 }
 
 /* Estilo del enlace para añadir nuevos usuarios */
@@ -785,4 +785,13 @@ h1 {
 .user-table tr:hover {
   background-color: #ddd;
   transition: 0.3s ease;
+}
+
+.navbar a img {
+  transition: transform 0.3s ease, filter 0.3s ease; /* Animación suave */
+}
+
+.navbar a:hover img {
+  filter: brightness(1.2); /* Aumenta el brillo */
+  transform: scale(1.1); /* Aumenta ligeramente el tamaño */
 }

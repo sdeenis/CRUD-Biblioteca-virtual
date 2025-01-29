@@ -14,16 +14,43 @@ class Libro
         $this->db = new DB();
     }
 
-    public function getPrestamos()
-    {
-        
-            
+    public function getAllPrestamos() {
+                    
         $q = "SELECT idprestan, iduser, idlibro, fechai from prestan";
 
         $items = $this->db->myQuery($q);
         return $items;
-        //se podria crear una vista en la base de datos con la consulta y llamar a la vista
-        //$q = "SELECT * FROM vista_libros";
+        
+        
+    }
+
+    public function getPrestamos($iduser)
+    {
+        
+        try {
+            $db = new mysqli("localhost", "root", "root", "books");
+
+            $q = "SELECT 
+        prestan.idLibro as idLibro
+        from prestan
+        where iduser=?
+        order by prestan.idLibro";
+            $items = [];
+            if ($result = $db->execute_query($q, [$iduser])) {
+                if ($result->num_rows != 0) {
+                    $items = [];
+                    while ($fila = $result->fetch_object()) {
+                        $items[] = $fila->idLibro;
+                    }
+                }
+            }
+        } catch (mysqli_sql_exception $e) {
+            echo "Error al buscar el libro: " . $e->getMessage();
+            return [];  // En caso de error, se retorna un array vacío
+        } finally {
+            $db->close();  // Siempre se cierra la conexión
+        }
+        return $items;
     }
 
     public function getAll()
@@ -229,7 +256,7 @@ class Libro
 
 
             //Consulta preparada: plantilla sql
-            $stmt = $db->prepare("INSERT INTO libros (titulo,genero,pais,ano,numPaginas) VALUES (?,?,?,?,?)");
+            $stmt = $db->prepare("INSERT INTO libros (titulo,genero,pais,ano,numPaginas,ejemplares,disponibles) VALUES (?,?,?,?,?,?,?)");
 
 
             $titulo = $libro['titulo'];
@@ -237,9 +264,12 @@ class Libro
             $pais = $libro['pais'];
             $ano = $libro['ano'];
             $numPaginas = $libro['numPaginas'];
+            $ejemplares = $libro['ejemplares'];
+            $disponibles = $libro['disponibles'];
+            
 
             //prepared statement: binding
-            $stmt->bind_param('sssss', $titulo, $genero, $pais, $ano, $numPaginas);
+            $stmt->bind_param('sssssss', $titulo, $genero, $pais, $ano, $numPaginas, $ejemplares, $disponibles);
 
             $stmt->execute();
 
@@ -468,10 +498,10 @@ class Libro
             // $query .= " WHERE idLibro = '$idLibro'";
 
             //Consulta preparada: plantilla sql
-            $q = ("UPDATE libros SET titulo = ?, genero = ?, pais = ?, ano = ?, numPaginas = ? WHERE idLibro = ?");
+            $q = ("UPDATE libros SET titulo = ?, genero = ?, pais = ?, ano = ?, numPaginas = ?, ejemplares = ?, disponibles = ? WHERE idLibro = ?");
 
 
-            $db->execute_query($q, [$libro['titulo'], $libro['genero'], $libro['pais'], $libro['ano'], $libro['numPaginas'], $idLibro]);
+            $db->execute_query($q, [$libro['titulo'], $libro['genero'], $libro['pais'], $libro['ano'], $libro['numPaginas'], $libro['ejemplares'], $libro['disponibles'], $idLibro]);
 
 
 

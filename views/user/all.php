@@ -4,9 +4,17 @@
     $campos = get_object_vars($data['user_all'][0]); // Obtener nombres de propiedades
 
     echo "<tr class='table-header'>";
-    foreach ($campos as $c=>$v) {
-        echo "<th>$c</th>";
-    }
+
+        echo "<th>idUser</th>";
+        echo "<th>Usuario</th>";
+        echo "<th>Contraseña</th>";
+        echo "<th>DNI</th>";
+        echo "<th>Nombre</th>";
+        echo "<th>Apellidos</th>";
+        echo "<th>Dirección</th>";
+        echo "<th>CP</th>";
+        echo "<th>Rango</th>";
+    
     echo "<th colspan='2'>Acciones</th>";
     echo "</tr>";
 

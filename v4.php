@@ -1,8 +1,8 @@
 
     <?php
-    //titulos de tablas
+
     //inserccion de libros - ejemplares etc
-    //tabla de prestamos, añadir nombre de usuario y libro
+
     include 'models/libro.php';
     include 'models/persona.php';
     include 'models/user.php';
@@ -84,14 +84,14 @@
 
             // $this->user->validate($data['login']);
             if ($iduser != 0) {
-                
+
 
                 //pedir el rol del usuario
                 //mostrar la vista principal de ese rol
                 //cargar en la sesion id, rol y preferencias
 
                 $roles = $this->user->getRoles($iduser);
-      
+
                 session_start();
                 $_SESSION['iduser'] = $iduser;
                 $_SESSION['cart'] = [];
@@ -110,7 +110,7 @@
                     }
                 }
 
-                if(count($_SESSION['cart']) == MAXCART) {
+                if (count($_SESSION['cart']) == MAXCART) {
                     $data['maxcart'] = MSSGS['maxbooks'];
                 }
 
@@ -124,11 +124,11 @@
                 }
             } else {
                 include "views/header.php";
-        include "views/nav.php";
-        include("views/login.php");
-        echo "<p class='errorLogin'>Datos incorrectos. Inténtelo de nuevo</p>";
-        include "views/footer.php";
-                
+                include "views/nav.php";
+                include("views/login.php");
+                echo "<p class='errorLogin'>Datos incorrectos. Inténtelo de nuevo</p>";
+                include "views/footer.php";
+
                 //se podria meter una vista de error, de forma que se llame con:
                 //View::render('error', $data); --> "No hay datos con ese correo", o "La contraseña no es correcta", o lo que sea
             }
@@ -139,16 +139,15 @@
 
         public function prestamoAll()
         {
-            $data['prestamo_all'] = $this->libro->getPrestamos();
-    
+            $data['prestamo_all'] = $this->libro->getAllPrestamos();
+
             View::render('prestamo/all', $data);
-            
         }
 
         public function userAll()
         {
             $data['user_all'] = $this->user->getAll();
-   
+
             View::render('user/all', $data);
         }
 
@@ -194,13 +193,13 @@
         {
             // include "views/nav.php";
             $data['libro_all'] = $this->libro->getAll();
-            
+
             if (isset($_SESSION)) {
                 $books = count($_SESSION['cart']);
                 echo "Reservas: " . $books . "<br>";
-                if($books >= MAXCART) {
+                if ($books >= MAXCART) {
                     // echo "No se pueden reservar más libros";
-                $data['maxcart'] = MSSGS['maxcart'];
+                    $data['maxcart'] = MSSGS['maxcart'];
                 }
             }
 
@@ -213,7 +212,7 @@
         {
             if (!isset($_SESSION)) session_start();
 
-            
+
 
             $this->libro->prestar($_SESSION['iduser'], $_REQUEST['idLibro']);
             $_SESSION['prestados']++;
@@ -247,7 +246,8 @@
             View::render('libro/save', $data);
         }
 
-        public function userForm() {
+        public function userForm()
+        {
             View::render('user/save');
         }
 
@@ -261,7 +261,8 @@
             $this->libroAll();
         }
 
-        public function userSave() {
+        public function userSave()
+        {
             $user = $_REQUEST;
             unset($user['action']);
             $this->user->save($user);
@@ -276,7 +277,7 @@
             $this->libroAll();
         }
 
-        
+
 
         public function personaForm()
         {
@@ -322,7 +323,8 @@
             $this->libroAll();
         }
 
-        public function userDelete() {
+        public function userDelete()
+        {
             $this->user->delete($_REQUEST['idUser']);
             $this->userAll();
         }

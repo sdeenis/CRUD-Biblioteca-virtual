@@ -1,4 +1,3 @@
-
 <div class="form-container">
     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="get" class="styled-form">
 
@@ -56,11 +55,27 @@
                 else
                     echo "<option value='$fila->idPersona'>$fila->nombre $fila->apellido</option>";
             }
-
             echo "
                 </select>
                 <a href='" . htmlspecialchars($_SERVER['PHP_SELF']) . "?action=personaForm' class='add-link'>Añadir nuevo</a>
+            </div>";
+            echo "
+            <div class='form-group'>
+                <label for='ejemplares'>Ejemplares</label>
+                <input type='text' name='ejemplares' id='ejemplares' value='$libro->ejemplares' required>
             </div>
+            ";
+
+            echo "
+            <div class='form-group'>
+                <label for='disponibles'>Disponibles</label>
+                <input type='text' name='disponibles' id='disponibles' value='$libro->disponibles' required>
+            </div>
+            
+
+            
+
+
 
             <input type='hidden' name='action' value='libroModificar'>
             <button type='submit' class='btn'>Guardar cambios</button>";
@@ -103,6 +118,19 @@
             echo "
                 </select>
                 <a href='" . htmlspecialchars($_SERVER['PHP_SELF']) . "?action=personaForm' class='add-link'>Añadir nuevo</a>
+            </div>
+
+
+            <div class='form-group'>
+                <label for='ejemplares'>Ejemplares</label>
+                <input type='text' name='ejemplares' id='ejemplares' required>
+            </div>
+            ";
+
+            echo "
+            <div class='form-group'>
+                <label for='disponibles'>Disponibles</label>
+                <input type='text' name='disponibles' id='disponibles'  required>
             </div>
 
             <input type='hidden' name='action' value='libroSave'>
