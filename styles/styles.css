@@ -1,0 +1,788 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* Asegura que el padding no afecte el tamaño total */
+}
+
+html,
+body {
+  font-family: "Onest", serif;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  /* Elimina el scroll lateral */
+}
+
+body {
+  padding: 75px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Altura mínima del viewport */
+  margin: 0;
+}
+
+/*background ----------------------------------------------------------------------------*/
+.background-gradient {
+  position: fixed;
+  /* Fija el fondo para que cubra toda la pantalla incluso al hacer scroll */
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  transform: rotate(180deg);
+  background: radial-gradient(60% 120% at 50% 50%, rgba(255, 255, 255, 0) 0%, rgba(252, 205, 238, 0.5) 100%);
+}
+
+/*header --------------------------------------------------------------------------------*/
+.header-title {
+  display: inline-block;
+}
+
+.header-content {
+  text-align: center;
+  flex-grow: 1;
+  font-weight: bold;
+  font-size: 2rem;
+  color: #333;
+}
+
+/*nav -----------------------------------------------------------------------------------*/
+.navbar {
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex; /* Utilizamos flexbox */
+  justify-content: space-between; /* Distribuir el espacio entre los elementos */
+  align-items: center; /* Centra los elementos verticalmente */
+}
+
+.navbar li {
+  margin: 0 15px; /* Espacio entre los elementos del menú */
+}
+
+.navbar .left-menu {
+  width: 200px;
+  display: flex;
+  margin-right: auto; /* Asegura que los elementos se alineen horizontalmente */
+}
+
+.navbar .right-menu {
+  width: 200px;
+  margin-left: auto;  /* Empuja el grupo de elementos a la derecha */
+  display: flex;      /* Asegura que los elementos se alineen horizontalmente */
+}
+
+.navbar .right-menu li {
+  margin: 0 20px; /* Espacio entre los elementos de la derecha */
+}
+
+.invisible-space {
+  display: block;
+  width: 40px;  /* Ajusta el tamaño según el espacio necesario */
+}
+
+
+.navbar a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+.navbar a:hover {
+  color: #007bff;
+}
+
+
+/* Estilo global para la página */
+.page-title {
+  text-align: center;
+  font-size: 2rem;
+  
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Estilo para el formulario de búsqueda */
+.search-form {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.search-input {
+  padding: 8px;
+  font-size: 1rem;
+  width: 250px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.search-button {
+  padding: 8px 16px;
+  font-size: 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.search-button:hover {
+  background-color: #0056b3;
+}
+
+/* Estilo para la tabla de libros */
+.books-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  text-align: left;
+}
+
+.books-table th,
+.books-table td {
+  padding: 12px;
+  border: 1px solid #ccc;
+}
+
+.table-header {
+  background-color: #f1f1f1;
+  font-weight: bold;
+}
+
+.table-data {
+  padding: 10px;
+}
+
+.action-cell {
+  text-align: center;
+}
+
+.reserve-link,
+.edit-link,
+.delete-link,
+.add-book-link {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+}
+
+.reserve-link:hover,
+.edit-link:hover,
+.delete-link:hover,
+.add-book-link:hover {
+  color: #0056b3;
+}
+
+/* Estilo para la celda con acciones (enlaces de reservar, modificar, borrar) */
+.action-cell a {
+  padding: 5px 10px;
+  margin: 0 5px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.action-cell a:hover {
+  color: #0056b3;
+}
+
+.add-book-link {
+  background-color: #28a745;
+  color: white;
+  padding: 8px 16px;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.add-book-link:hover {
+  background-color: #218838;
+}
+
+.add-book-p {
+  text-align: center;  /* Centra el párrafo */
+  margin-top: 30px; /* Espacio por encima del párrafo */
+  margin-bottom: 40px; /* Espacio por debajo para que no se solape con la tabla ni el footer */
+}
+
+.main-content {
+  flex: 1;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 10px 20px;
+  border-top: 1px solid #ccc;
+  font-size: 14px;
+  color: #333;
+  background-color: #f9f9f9;
+}
+
+.footer a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.2s ease-in-out;
+}
+
+.footer a:hover {
+  color: #0056b3;
+}
+
+/* Títulos */
+.title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+/* Contenedor para centrar tablas */
+.table-container {
+  width: 90%;
+  margin: 0 auto;
+  overflow-x: auto;
+}
+
+/* Tabla */
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 1rem;
+  font-family: 'Arial', sans-serif;
+  text-align: left;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.styled-table thead tr {
+  background-color: #009879;
+  color: #ffffff;
+  text-align: left;
+  font-weight: bold;
+}
+
+.styled-table th, .styled-table td {
+  padding: 12px 15px;
+  border: 1px solid #dddddd;
+}
+
+.styled-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+  border-bottom: 2px solid #009879;
+}
+
+.styled-table a.action-link {
+  color: #009879;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.styled-table a.action-link:hover {
+  text-decoration: underline;
+}
+
+/* Contenedor del formulario */
+.form-container {
+  width: 50%;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Formulario */
+.styled-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form-group input, .form-group select {
+  padding: 8px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.form-group select {
+  height: auto;
+}
+
+/* Botones */
+.btn {
+  padding: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  background-color: #009879;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #007f65;
+}
+
+/* Enlaces */
+.add-link, .back-link {
+  color: #009879;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.add-link:hover, .back-link:hover {
+  text-decoration: underline;
+}
+
+/* Estilo general del formulario de login */
+.form-login {
+  max-width: 400px;
+  margin: 50px auto; /* Centrado en la página */
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
+}
+
+/* Estilo para los campos del formulario */
+.form-login div {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-login label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.form-login input[type="text"],
+.form-login input[type="password"] {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.form-login input[type="text"]:focus,
+.form-login input[type="password"]:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+/* Estilo del botón */
+.diventrar {
+  text-align: center;
+}
+
+.diventrar .btn {
+  padding: 10px 20px;
+  font-size: 14px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.diventrar .btn:hover {
+  background-color: #0056b3;
+}
+
+.errorLogin {
+  color: red;
+  font-weight: bold;
+  text-align: center;
+  padding: 20px;
+  animation: shake 0.5s;
+}
+
+/*animacion texto error*/
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-10px); }
+  50% { transform: translateX(10px); }
+  75% { transform: translateX(-10px); }
+  100% { transform: translateX(0); }
+}
+
+/* Estilo general para el formulario */
+.styled-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 500px;
+  margin: 0px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.styled-form-title {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Grupos de campos del formulario */
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form-input {
+  padding: 8px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+/* Estilo para los inputs */
+.form-input:focus {
+  outline: none;
+  border-color: #009879;
+}
+
+/* Botón de submit */
+.btn-submit {
+  padding: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  background-color: #009879;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.btn-submit:hover {
+  background-color: #007a63;
+}
+
+/* Estilo para el enlace de vuelta */
+.btn-back {
+  display: inline-block;
+  margin-top: 20px;
+  font-size: 1rem;
+  color: #009879;
+  text-decoration: none;
+}
+
+.btn-back:hover {
+  text-decoration: underline;
+}
+
+/* Estilo del navbar de admin */
+.admin-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Enlaces de opciones de admin */
+.admin-link {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #009879;
+  text-decoration: none;
+  padding: 10px 0;
+  width: 100%;
+  display: block;
+  text-align: center;
+}
+
+.admin-link:hover {
+  background-color: #009879;
+  color: white;
+  border-radius: 5px;
+}
+
+/* Opcional: separación entre los enlaces */
+.admin-nav a {
+  
+}
+
+.admin-title {
+  color: #333; /* Color del texto */
+  font-size: 24px; /* Tamaño de la fuente */
+  font-weight: bold; /* Negrita */
+  margin-bottom: 20px; /* Espacio abajo */
+  text-align: center;
+}
+
+/* Estilo del título */
+.user-list-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+  margin-top: 20px;
+
+}
+
+/* Estilo de la tabla */
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+.user-table th, .user-table td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+/* Encabezados de la tabla */
+.table-header {
+  background-color: #009879;
+  color: white;
+  font-weight: bold;
+}
+
+/* Filas alternadas */
+.user-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+
+
+/* Estilo de los enlaces de acciones */
+.action-link {
+  color: #009879;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.action-link:hover {
+  /* background-color: #009879; */
+  color: white;
+}
+
+.delete-link {
+  color: red;
+}
+
+.delete-link:hover {
+  background-color: red;
+  color: white;
+}
+
+/* Estilo del enlace para añadir nuevos usuarios */
+.add-new-link {
+  background-color: #28a745;
+  color: white;
+  padding: 8px 16px;
+  font-weight: bold;
+  border-radius: 5px;
+  text-decoration: none;
+  margin: 10px;
+}
+
+.add-new-link:hover {
+  background-color: #218838;
+}
+
+.add-new-link-p {
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 40px;
+}
+
+/* Estilo para destacar a los usuarios administradores */
+.admin-badge {
+  display: inline-block;
+  color: #333; /* Color del texto */
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+/* Contenedor principal del formulario */
+.styled-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Título del formulario */
+.styled-form .title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Etiquetas */
+.styled-form label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+/* Campos de entrada y select */
+.styled-form input[type="text"],
+.styled-form input[type="password"],
+.styled-form select {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #fff;
+  transition: border-color 0.3s ease;
+}
+
+.styled-form input[type="text"]:focus,
+.styled-form input[type="password"]:focus,
+.styled-form select:focus {
+  border-color: #009879;
+  outline: none;
+}
+
+/* Botón de enviar */
+.styled-form input[type="submit"] {
+  padding: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  background-color: #009879;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.styled-form input[type="submit"]:hover {
+  background-color: #007a63;
+}
+
+/* Enlace de volver */
+.back-link {
+  display: inline-block;
+  text-align: center;
+  margin-top: 10px;
+  color: #009879;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+
+/* Contenedor principal */
+h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Tabla de préstamos */
+.user-table {
+  width: 80%;
+  margin: 0 auto;
+  border-collapse: collapse;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Encabezado de la tabla */
+.user-table th {
+  background-color: #009879;
+  color: white;
+  padding: 12px;
+  text-align: left;
+  border-bottom: 2px solid #ddd;
+}
+
+/* Filas de la tabla */
+.user-table td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+  color: #333;
+}
+
+/* Alternar colores en filas */
+.user-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* Hover en filas */
+.user-table tr:hover {
+  background-color: #ddd;
+  transition: 0.3s ease;
+}
