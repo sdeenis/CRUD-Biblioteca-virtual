@@ -3,7 +3,7 @@
     <ul>
         <div class="left-menu">
         <?php
-        if (!isset($_SESSION)) session_start();
+        // if (!isset($_SESSION)) session_start();
 
         // Mostrar enlace "Inicio" a la izquierda
         if (isset($_SESSION['adm'])) {
