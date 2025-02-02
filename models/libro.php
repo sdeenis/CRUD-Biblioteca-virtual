@@ -28,7 +28,7 @@ class Libro
     {
         
         try {
-            $db = new mysqli("localhost", "root", "root", "books");
+            $db = new mysqli("172.17.0.3:localhost:3306", "root", "root", "books");
 
             $q = "SELECT 
         prestan.idLibro as idLibro
@@ -88,7 +88,7 @@ class Libro
 
         // $db->execute_query($q, $ids);
 
-        $db = new mysqli("localhost", "root", "root", "books");
+        $db = new mysqli("172.17.0.3:localhost:3306", "root", "root", "books");
         $q = "UPDATE libros SET disponibles = disponibles + 1 WHERE idLibro = ?";
 
         foreach ($_SESSION['cart'] as $idLibro => $estado) {
@@ -101,7 +101,7 @@ class Libro
     public function reservar($idLibro)
     {
         try {
-            $db = new mysqli("localhost", "root", "root", "books");
+            $db = new mysqli("172.17.0.3:localhost:3306", "root", "root", "books");
 
             if (mysqli_connect_errno()) {
                 printf("Connect failed: %s\n", mysqli_connect_error());
@@ -120,7 +120,7 @@ class Libro
     public function cancelar($idLibro)
     {
         try {
-            $db = new mysqli("localhost", "root", "root", "books");
+            $db = new mysqli("172.17.0.3:localhost:3306", "root", "root", "books");
 
             if (mysqli_connect_errno()) {
                 printf("Connect failed: %s\n", mysqli_connect_error());
@@ -138,7 +138,7 @@ class Libro
 
     public function renovar($idLibro, $iduser) {
         try {
-            $db = new mysqli("localhost", "root", "root", "books");
+            $db = new mysqli("172.17.0.3:localhost:3306", "root", "root", "books");
             $q = "UPDATE prestan SET fechai = NOW() WHERE idLibro =? and iduser =?";
 
             //la profe tiene algo distinto, cambia la fecha fin en vez de fecha inicio, pero en esencia es lo mismo.
@@ -156,7 +156,7 @@ class Libro
     public function devolver($idLibro, $iduser)
     {
         try {
-            $db = new mysqli("localhost", "root", "root", "books");
+            $db = new mysqli("172.17.0.3:localhost:3306", "root", "root", "books");
 
             //obtener los datos del libro
             $q = "SELECT DISTINCT CONCAT_WS(';', titulo, autores, numPaginas, ano, pais) as datoslibro, CONCAT_WS(';', user, dni, nomcli, apecli, dircli, cpcli) as datosuser FROM vlibros, users WHERE idLibro =? and iduser =?";  
@@ -201,7 +201,7 @@ class Libro
         // ----forma de la profe (sin crear la funcion myUpdateQuery en bd.php----
 
         try {
-            $db = new mysqli("localhost", "root", "root", "books");
+            $db = new mysqli("172.17.0.3:localhost:3306", "root", "root", "books");
 
             if (mysqli_connect_errno()) {
                 printf("Connect failed: %s\n", mysqli_connect_error());
@@ -231,7 +231,7 @@ class Libro
         unset($libro['autor']);
 
         try {
-            $db = new mysqli("localhost", "root", "root", "books");
+            $db = new mysqli("172.17.0.3:localhost:3306", "root", "root", "books");
             // $db->autocommit(false);
 
             $db->commit();
@@ -334,7 +334,7 @@ class Libro
     public function get($busqueda)
     {
         try {
-            $db = new mysqli("localhost", "root", "root", "books");
+            $db = new mysqli("172.17.0.3:localhost:3306", "root", "root", "books");
 
             $textoBusqueda = $busqueda;
             echo "<h1>Resultados de la búsqueda: \"$textoBusqueda\"</h1>";
@@ -402,7 +402,7 @@ class Libro
     {
 
         try {
-            $db = new mysqli("localhost", "root", "root", "books");
+            $db = new mysqli("172.17.0.3:localhost:3306", "root", "root", "books");
             $q = "SELECT idLibro, titulo, genero, numPaginas, ano, pais, autores from vlibros where idLibro in (";
 
             if (count($ids) == 0) {
@@ -449,7 +449,7 @@ class Libro
     public function delete($idLibro)
     {
         try {
-            $db = new mysqli("localhost", "root", "root", "books");
+            $db = new mysqli("172.17.0.3:localhost:3306", "root", "root", "books");
             $db->query("DELETE FROM libros WHERE idLibro = '$idLibro'");
 
             //consulta preparada:
@@ -468,7 +468,7 @@ class Libro
 
 
         try {
-            $db = new mysqli("localhost", "root", "root", "books");
+            $db = new mysqli("172.17.0.3:localhost:3306", "root", "root", "books");
 
             //verificar la conexion
 

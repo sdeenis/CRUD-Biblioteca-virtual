@@ -11,7 +11,7 @@ class Libro
     public static function getAll()
     {
         try {
-            $db = new mysqli("localhost", "root", "root", "books");
+            $db = new mysqli("172.17.0.3:localhost:3306", "root", "root", "books");
 
             $result = $db->query("SELECT * FROM libros
                                     LEFT JOIN escriben ON libros.idLibro = escriben.idLibro
@@ -52,7 +52,7 @@ class Libro
         unset($libro['autor']);
 
         try {
-            $db = new mysqli("localhost", "root", "root", "books");
+            $db = new mysqli("172.17.0.3:localhost:3306", "root", "root", "books");
             // $db->autocommit(false);
 
             $db->commit();
@@ -154,7 +154,7 @@ class Libro
         try {
 
 
-            $db = new mysqli("localhost", "root", "root", "books");
+            $db = new mysqli("172.17.0.3:localhost:3306", "root", "root", "books");
 
             $textoBusqueda = $busqueda;
             echo "<h1>Resultados de la búsqueda: \"$textoBusqueda\"</h1>";
@@ -215,7 +215,7 @@ class Libro
     public static function delete($idLibro)
     {
         try {
-            $db = new mysqli("localhost", "root", "root", "books");
+            $db = new mysqli("172.17.0.3:localhost:3306", "root", "root", "books");
             $db->query("DELETE FROM libros WHERE idLibro = '$idLibro'");
 
             //consulta preparada:
@@ -234,7 +234,7 @@ class Libro
 
 
         try {
-            $db = new mysqli("localhost", "root", "root", "books");
+            $db = new mysqli("172.17.0.3:localhost:3306", "root", "root", "books");
 
             //verificar la conexion
 

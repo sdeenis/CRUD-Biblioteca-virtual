@@ -26,7 +26,7 @@ class Persona
 
     public function save($p)
     {
-        $db = new mysqli("localhost", "root", "root", "books");
+        $db = new mysqli("172.17.0.3:localhost:3306", "root", "root", "books");
 
         $q = "INSERT INTO personas (nombre, apellido, pais) VALUES ('$p[nombre]', '$p[apellido]', '$p[pais]')";
         echo $q;

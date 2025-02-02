@@ -4,7 +4,7 @@
         <?php
         if (isset($data['libroID'])) {
             echo '<h1 class="title">Modificación de Libros</h1>';
-            $db = new mysqli("localhost", "root", "root", "books");
+            $db = new mysqli("172.17.0.3:localhost:3306", "root", "root", "books");
 
             $idLibro = $data['libroID'];
             $result = $db->query("SELECT * FROM libros WHERE libros.idLibro = '$idLibro'");
