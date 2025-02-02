@@ -27,7 +27,7 @@ foreach ($prestamos as $prestamo) {
     echo "<td>" . $prestamo->idprestan . "</td>";
     echo "<td>" . $prestamo->iduser . "</td>";
 
-    $db = new mysqli('172.17.0.3:localhost:3306', 'root', 'root', 'books');
+    $db = new mysqli('mysql_container', 'root', 'root', 'books');
     $q = "SELECT user from users where iduser = $prestamo->iduser";
     $res = $db->execute_query($q)->fetch_object();
 
@@ -35,7 +35,7 @@ foreach ($prestamos as $prestamo) {
 
     echo "<td>" . $prestamo->idlibro . "</td>";
 
-    $db = new mysqli('172.17.0.3:localhost:3306', 'root', 'root', 'books');
+    $db = new mysqli('mysql_container', 'root', 'root', 'books');
     $q = "SELECT titulo from libros where idlibro = $prestamo->idlibro";
     $res = $db->execute_query($q)->fetch_object();
 

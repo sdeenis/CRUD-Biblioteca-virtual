@@ -23,7 +23,7 @@ class User
 
     public function save($data) {
         try {
-            $db = new mysqli("172.17.0.3:localhost:3306", "root", "root", "books");
+            $db = new mysqli("mysql_container", "root", "root", "books");
             $q = "INSERT INTO users (user, pass, dni, nomcli, apecli, dircli, cpcli, nivel) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             $result = $db->execute_query($q, [$data['user'], $data['pwd'], $data['dni'], $data['nombre'], $data['apellido'], $data['direccion'], $data['cp'], $data['nivel']]);
         } catch (mysqli_sql_exception $e) {
@@ -50,7 +50,7 @@ class User
 
     public function getRoles($id) {
 
-        $db = new mysqli ("172.17.0.3:localhost:3306", "root", "root", "books");
+        $db = new mysqli ("mysql_container", "root", "root", "books");
         $roles=['cli', 'ope', 'ges', 'adm'];
 
         $q = "SELECT nivel from users where iduser = ?";
@@ -77,7 +77,7 @@ class User
     public function delete($id)
     {
         try {
-            $db = new mysqli("172.17.0.3:localhost:3306", "root", "root", "books");
+            $db = new mysqli("mysql_container", "root", "root", "books");
             $q = "DELETE FROM users WHERE iduser = ?";
             $result = $db->execute_query($q, [$id]);
         } catch (mysqli_sql_exception $e) {
